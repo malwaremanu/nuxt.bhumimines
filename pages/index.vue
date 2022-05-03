@@ -1,9 +1,12 @@
 <template>
-  <Tutorial/>
+  <div>
+    <Tutorial />
+    <NuxtLink to="/login">Login</NuxtLink>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage'
-}
+  name: "IndexPage",
+};
 </script>
