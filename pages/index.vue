@@ -1,12 +1,23 @@
 <template>
   <div>
-    <Tutorial />
-    <NuxtLink to="/login">Login</NuxtLink>
+    <NavBar />
+    <div class="bg-bhumi-50 h-screen">
+
+    </div>
   </div>
 </template>
 
 <script>
+import BtnPrimary from "../components/btn-primary.vue";
+import Anchor from "../components/anchor.vue";
+import NavBar from "../components/nav-bar.vue";
 export default {
-  name: "IndexPage",
+    name: "IndexPage",
+    components: { BtnPrimary, Anchor, NavBar },
+    methods : {
+      check_login(){
+        console.log('checking login section.')
+      }
+    }
 };
 </script>
