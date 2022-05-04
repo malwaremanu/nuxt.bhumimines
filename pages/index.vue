@@ -2,7 +2,7 @@
   <div>
     <NavBar />
     <div class="bg-bhumi-50 h-screen p-4">
-      This is a sample page.
+      This is seen from erp.bhumimines.com 
     </div>
   </div>
 </template>
