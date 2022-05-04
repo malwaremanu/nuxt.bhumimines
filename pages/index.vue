@@ -1,8 +1,8 @@
 <template>
   <div>
     <NavBar />
-    <div class="bg-bhumi-50 h-screen">
-      Sample content here...
+    <div class="bg-bhumi-50 h-screen p-4">
+      This is a sample page.
     </div>
   </div>
 </template>
