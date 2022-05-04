@@ -1,12 +1,11 @@
 <template>
-  <div>
     <button    
       class="
         w-full
         px-4 py-2
         bg-bhumi-600
         hover:bg-bhumi-700
-        rounded
+        rounded-md shadow-lg
         text-sm
         font-bold
         text-white
@@ -16,7 +15,6 @@
       " :value="text">      
       {{ text }}
      </button>
-  </div>
 </template>
 
 <script>

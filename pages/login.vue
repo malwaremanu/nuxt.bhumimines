@@ -37,12 +37,12 @@
             placeholder="Enter your email address"
           />
         </div>
-        <div>
-          <PrimaryBtn @click="resets" text="Reset" />
+        <div @click="shoot_mail">
+          <PrimaryBtn text="Reset" />
         </div>
 
-        <div v-show="resetGood"
-          class="text-gray-400 text-sm border p-2 rounded-md mt-2 text-center"
+        <div v-if="resetGood"
+          class="text-bhumi-500 text-sm border p-2 rounded-md mt-2 text-center"
         >
           If this is a valid email id stored in out database, we will send a
           password reset link, check your mail inbox.
@@ -112,10 +112,7 @@ export default {
     };
   },
   methods: {
-    resets() {
-      // console.log(this.username, this.password);
-      this.resetGood = true;
-    },
+    
     cons() {
       console.log(this.username, this.password);      
     },
@@ -129,6 +126,10 @@ export default {
       this.username = "";
       this.password = "";
     },
+    shoot_mail() {
+      console.log('reset button clicked')
+      this.resetGood = true;
+    }
   },
   components: { InputText, PrimaryBtn },
 };
