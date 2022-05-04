@@ -1,9 +1,9 @@
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
-  router: {
-      base: '/nuxt.bhumimines/'
-    },
+  // router: {
+  //     base: '/nuxt.bhumimines/'
+  //   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Bhumi Mines SARL',
