@@ -7,7 +7,7 @@
     >
       <div class="mb-4">
         <!-- <p class="hidden text-gray-600">Login page</p> -->
-        <div v-if="modalShow" class="flex justify-between">
+        <div v-show="modalShow" class="flex justify-between">
           <div class="text-xl font-bold dark:text-gray-50">Password Reset</div>
           <div @click="signIn">
             <svg
@@ -26,59 +26,61 @@
             </svg>
           </div>
         </div>
-        <h2 v-else class="text-xl font-bold dark:text-gray-50">Sign in</h2>
+        <h2 v-show="!modalShow" class="text-xl font-bold dark:text-gray-50">
+          Sign in
+        </h2>
       </div>
 
-      <div v-if="modalShow">
+      <div v-show="modalShow">
         <div>
-          <InputText
+          <!-- <InputText
             type="text"
             v-model="username"
             placeholder="Enter your email address"
-          />
+          /> -->
+          <input type="text" class="b-input" v-model="username" />
         </div>
         <div @click="shoot_mail">
           <PrimaryBtn text="Reset" />
         </div>
 
-        <div v-if="resetGood"
-          class="text-bhumi-500 text-sm border p-2 rounded-md mt-2 text-center"
-        >
-          If this is a valid email id stored in out database, we will send a
-          password reset link, check your mail inbox.
-        </div>        
+        <div v-show="resetGood" class="normal-alert">
+          <div>
+            If this is a valid email id stored in out database, we will send a
+            password reset link, check your mail inbox.
+          </div>
+          <div class="p-2">
+            <nuxt-link
+              to="/"
+              class="px-4 py-2 border rounded-full font-semibold"
+              >Go Back</nuxt-link
+            >
+          </div>
+        </div>
       </div>
-      <div v-else>
+      <div v-show="!modalShow">
         <div>
-          <InputText
+          <input
             type="text"
+            class="b-input"
             v-model="username"
             placeholder="Email / Username"
           />
         </div>
         <div>
-          <InputText
-            type="password"
+          <input
+            type="text"
+            class="b-input"
             v-model="password"
             placeholder="Password"
           />
         </div>
-        <div>
-          <PrimaryBtn @click="cons" text="Sign In" />
+        <div>          
+          <button class="b-button" @click="check_creds">Sign in</button>
         </div>
         <div class="flex items-center justify-between mt-2">
           <div class="flex flex-row items-center">
-            <input
-              type="checkbox"
-              class="
-                focus:ring-blue-500
-                h-4
-                w-4
-                text-blue-600
-                border-gray-300
-                rounded
-              "
-            />
+            <input type="checkbox" class="b-checkbox" />
             <label for="comments" class="ml-2 text-sm font-normal text-gray-600"
               >Remember me</label
             >
@@ -92,7 +94,7 @@
               Forgot password?
             </button>
           </div>
-        </div>        
+        </div>
       </div>
     </div>
   </section>
@@ -101,45 +103,73 @@
 <script>
 import InputText from "../components/inputType.vue";
 import PrimaryBtn from "../components/btn-primary.vue";
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   name: "LoginPage",
   data() {
     return {
-      username: "",
-      password: "",
+      username: "admin",
+      password: "pass",
       modalShow: false,
-      resetGood : false,
+      resetGood: false,
     };
   },
-  methods: {    
+  methods: {
     cons() {
-      console.log(this.username, this.password);      
+      console.log("putting data to console.");
+      console.log(username, password);
+    },
+    check_creds() {
+      console.log('checking creds...')
+      axios
+        .post(process.env.baseUrl + "accounts/login", {
+          username: this.username,
+          password: this.password,
+        })
+        .then((resp) => {
+          // this.getList();
+          console.log("success" + resp.data);
+          if(resp.data['msg'] == 'success'){
+            window.location.href = '/dashboard'
+          }
+          else{
+            alert('Incorrect username or password.')
+          }
+        });
     },
     resetPass() {
       this.modalShow = true;
       this.username = "";
-      this.password = "";      
+      this.password = "";
     },
     signIn() {
       this.modalShow = false;
       this.username = "";
       this.password = "";
-    },
-    shoot_mail() {
-
-      console.log('reset button clicked', this.username)
 
       axios
-        .post("https://apibhumimines.malwaremanu.repl.co/accounts/login", { username : this.username})
+        .post(process.env.baseUrl + "accounts/reset", {
+          username: this.username,
+        })
         .then((resp) => {
           // this.getList();
           console.log("success" + resp.data);
         });
-      console.log('reset button clicked')
+    },
+    shoot_mail() {
+      console.log("reset button clicked", this.username);
+      // console.log(process.env.baseUrl + "accounts/reset")
+      axios
+        .post(process.env.baseUrl + "accounts/reset", {
+          username: this.username,
+        })
+        .then((resp) => {
+          // this.getList();
+          console.log("success" + resp.data);
+        });
       this.resetGood = true;
-    }
+    },
   },
   components: { InputText, PrimaryBtn },
 };

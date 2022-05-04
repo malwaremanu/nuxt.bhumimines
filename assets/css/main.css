@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {    
+    .b-input {
+        @apply w-full px-4 py-2 text-sm bg-bhumi-50 focus:outline-none border border-bhumi-200 rounded text-bhumi-600 mt-2;
+      }
+    
+    .b-check {
+        @apply focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded ;
+    }
+
+    .normal-alert {
+        @apply text-bhumi-500 text-sm border p-2 rounded-md mt-2 text-center;
+    }
+
+    .b-button {
+        @apply w-full px-4 py-2 bg-bhumi-600 hover:bg-bhumi-700 rounded-md shadow-lg text-sm font-bold text-white transition duration-200 mt-2;
+    }
+  }
