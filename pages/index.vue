@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="container mx-auto">
     <NavBar />
-    <div class="bg-bhumi-50 h-screen p-4">
+    <div class="bg-bhumi-100 h-screen p-4">
       This is seen from erp.bhumimines.com 
     </div>
   </div>

@@ -101,6 +101,8 @@
 <script>
 import InputText from "../components/inputType.vue";
 import PrimaryBtn from "../components/btn-primary.vue";
+import axios from 'axios';
+
 export default {
   name: "LoginPage",
   data() {
@@ -111,8 +113,7 @@ export default {
       resetGood : false,
     };
   },
-  methods: {
-    
+  methods: {    
     cons() {
       console.log(this.username, this.password);      
     },
@@ -127,6 +128,15 @@ export default {
       this.password = "";
     },
     shoot_mail() {
+
+      console.log('reset button clicked', this.username)
+
+      axios
+        .post("https://apibhumimines.malwaremanu.repl.co/accounts/login", { username : this.username})
+        .then((resp) => {
+          // this.getList();
+          console.log("success" + resp.data);
+        });
       console.log('reset button clicked')
       this.resetGood = true;
     }
