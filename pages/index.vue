@@ -2,7 +2,7 @@
   <div>
     <NavBar />
     <div class="bg-bhumi-50 h-screen">
-
+      Sample content here...
     </div>
   </div>
 </template>
