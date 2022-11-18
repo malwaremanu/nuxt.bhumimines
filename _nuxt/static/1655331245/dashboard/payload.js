@@ -1,1 +1,0 @@
-__NUXT_JSONP__("/dashboard", {data:[{}],fetch:{"dashboard:0":{task_lists:[],mountains:{items:[{key:"8xzr6gl8u11h",lastUpdated:"2022-06-15 21:46:39.627835+00:00",title:"Some Content"},{key:"rl1vbuy45sy7",lastUpdated:"2022-06-15 21:45:11.511378+00:00",title:"Manu's Personal Tasks"}],title:"mTask_Lists"}}},mutations:void 0});
